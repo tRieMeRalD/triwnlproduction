@@ -1,0 +1,106 @@
+html,
+body {
+  height: 100%;
+}
+
+#wrap {
+  min-height: 100%;
+}
+#main {
+  overflow: auto;
+  padding-bottom: 150px; /* this needs to be bigger than footer height*/
+}
+
+.footer {
+  position: relative;
+  margin-top: -150px; /* negative value of footer height */
+  height: 150px;
+  clear: both;
+  padding-top: 20px;
+}
+/*
+footer {
+  position: absolute !important;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  padding: 1rem;
+  background-color: #efefef;
+  text-align: center;
+}
+*/
+
+.uk-card,
+.uk-card-default {
+  color: none !important;
+}
+
+#paddingTop {
+  padding-top: 15%;
+}
+
+#infoPadding {
+  padding-top: 20px;
+}
+
+.container {
+  position: relative;
+}
+
+.landing {
+  position: relative;
+  background: url('./img/showcase1.jpg') no-repeat;
+  background-size: cover;
+  height: 1500px;
+  margin-bottom: -50px;
+}
+
+.webdev {
+  position: relative;
+  background: url('./img/code.jpg') no-repeat;
+  background-size: cover;
+  height: 700px;
+}
+
+#triwnlsol {
+  margin-top: 180px;
+}
+
+.background {
+  background-color: #0e3e8c;
+}
+
+.col-md-6 {
+  padding-right: 0 !important;
+  padding-left: 0 !important;
+}
+
+#noBorder {
+  border-color: none !important;
+}
+
+.landing-inner {
+  padding-top: 80px;
+}
+
+.dark-overlay {
+  background-color: rgba(0, 0, 0, 0.7);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.card-form {
+  opacity: 0.9;
+}
+
+.latest-profiles-img {
+  width: 40px;
+  height: 40px;
+}
+
+.form-control::placeholder {
+  color: #bbb !important;
+}
