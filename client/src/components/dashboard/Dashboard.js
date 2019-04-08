@@ -65,7 +65,7 @@ class Dashboard extends Component {
     }
 
     return (
-      <div className="container pt-5" style={{ marginBottom: "150px" }}>
+      <div className="container pt-5" style={{ marginBottom: "300px" }}>
         <a href="#" onClick={this.onLogoutClick.bind(this)}>
           &larr; Logout
         </a>
