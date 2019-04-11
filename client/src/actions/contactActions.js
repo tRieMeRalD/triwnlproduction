@@ -58,6 +58,19 @@ export const deleteContact = id => dispatch => {
     );
 };
 
+/* // Google recaptcha
+export const googleRecaptcha = history => dispatch => {
+  axios
+    .post("/api/contact/send")
+    .then(res => history.push("/contact_success"))
+    .catch(err =>
+      dispatch({
+        type: GET_ERRORS,
+        payload: err.response.data
+      })
+    );
+}; */
+
 // Clear errors
 export const clearErrors = () => {
   return {

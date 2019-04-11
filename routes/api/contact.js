@@ -82,6 +82,40 @@ router.post("/send", (req, res, next) => {
   <p>${req.body.message}</p>
   `;
 
+  var captchaSolved = false;
+  var view = false;
+
+  if (
+    req.body["g-recaptcha-response"] === undefined ||
+    req.body["g-recaptcha-response"] === "" ||
+    req.body["g-recaptcha-response"] === null
+  ) {
+    return res.redirect("/contact_error"), (view = true);
+  }
+
+  var secretKey = keys.captchaSecret;
+  var verificationUrl =
+    "https://www.google.com/recaptcha/api/siteverify?secret=" +
+    secretKey +
+    "&response=" +
+    req.body["g-recaptcha-response"] +
+    "&remoteip=" +
+    req.connection.remoteAddress;
+
+  request(verificationUrl, (error, response, body) => {
+    body = JSON.parse(body);
+    if (body.success !== undefined && !body.success) {
+      return (captchaSolved = false), (view = true);
+    }
+    view = true;
+    captchaSolved = true;
+  });
+
+  // Error in captcha
+  router.use("*", (req, res) => {
+    res.status(404).send("404");
+  });
+
   // async..await is not allowed in global scope, must use a wrapper
   async function main() {
     // Generate test SMTP service account from ethereal.email
@@ -115,12 +149,19 @@ router.post("/send", (req, res, next) => {
     // send mail with defined transport object
     let info = await transporter.sendMail(mailOptions, (err, info) => {
       if (err) {
-        console.log(err);
-        res.json({ error: "error" });
-        next();
+        if (!captchaSolved && view) {
+          console.log(err);
+          next();
+        } else {
+          res.json({ error: "error" });
+        }
       } else {
-        console.log(info);
-        res.json({ success: "success" });
+        if (captchaSolved && view) {
+          console.log(info);
+          res.json({ success: "success" });
+        } else {
+          res.json({ error: "error" });
+        }
       }
     });
   }

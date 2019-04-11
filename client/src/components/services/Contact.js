@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import PropTypes from "prop-types";
 
-import { contactSubmit } from "../../actions/contactActions";
+import { googleRecaptcha, contactSubmit } from "../../actions/contactActions";
 
 import InputGroup from "../common/InputGroup";
 import TextAreaInput from "../common/TextAreaInput";
@@ -45,6 +45,12 @@ class Contact extends Component {
     this.props.contactSubmit(contactData, this.props.history);
   }
 
+  /*  onSubmits(e) {
+    e.preventDefault();
+
+    this.props.googleRecaptcha(this.props.history);
+  }
+ */
   onChange(e) {
     this.setState({ [e.target.name]: e.target.value });
   }
@@ -136,11 +142,21 @@ class Contact extends Component {
                     error={errors.message}
                   />
                 </div>
-                <input
+
+                <form action="?" onSubmit={this.onSubmits}>
+                  <div
+                    class="g-recaptcha"
+                    data-sitekey="6Lcan50UAAAAAPGDC5trCYz9xa4uYPuXSy-LSSN5"
+                  />
+                  <br />
+                  <input type="submit" class="btn btn-primary" value="Submit" />
+                </form>
+
+                {/*                 <input
                   type="submit"
                   value="Submit"
                   className="btn btn-primary"
-                />
+                /> */}
               </form>
             </div>
           </div>
@@ -152,6 +168,7 @@ class Contact extends Component {
 
 Contact.propTypes = {
   contactSubmit: PropTypes.func.isRequired,
+  //googleRecaptcha: PropTypes.func.isRequired,
   errors: PropTypes.object.isRequired
 };
 
