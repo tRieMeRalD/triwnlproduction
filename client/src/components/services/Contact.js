@@ -143,7 +143,7 @@ class Contact extends Component {
                   />
                 </div>
 
-                <form action="?" onSubmit={this.onSubmits}>
+                <form>
                   <div
                     class="g-recaptcha"
                     data-sitekey="6Lcan50UAAAAAPGDC5trCYz9xa4uYPuXSy-LSSN5"

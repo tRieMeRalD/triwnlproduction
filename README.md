@@ -7,3 +7,9 @@
 ## April 7, 2019 Update
 
 ###### Initial Commit
+
+## April 11, 2019 Update
+
+###### Added googleRecaptcha
+
+###### Fixed client side rendering
